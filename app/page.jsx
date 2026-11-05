@@ -6,23 +6,21 @@ export default function Home() {
       id: 'site-yonetim',
       title: 'Apartman & Site Yönetim Sistemi',
       description: 'Kat ve daire görselleştirme mimarisi, dinamik aidat takibi, gelir-gider hesaplaması ve şeffaf yönetim paneli.',
-      tags: ['React', 'Tailwind CSS', 'Next.js'],
-      link: '#',
+      link: 'https://site-yonetim adresiniz.vercel.app', // Projenizin linkini buraya yazabilirsiniz
       gradient: 'from-blue-600/20 via-indigo-600/10 to-transparent',
     },
     {
       id: 'pos-adisyon',
       title: 'Kafe & Restoran POS Adisyon Sistemi',
       description: 'Çoklu garson senkronizasyonu, canlı masa düzeni haritası, QR müşteri menüsü ve SuperAdmin yetkilendirmesi.',
-      tags: ['Next.js', 'Tailwind CSS', 'Node.js', 'Real-time'],
-      link: '#',
+      link: 'https://pos-adisyon adresiniz.vercel.app', // Projenizin linkini buraya yazabilirsiniz
       gradient: 'from-purple-600/20 via-pink-600/10 to-transparent',
     },
   ];
 
   return (
     <div className="relative min-h-screen bg-[#0b0f19] text-slate-100 overflow-hidden font-sans">
-      {/* 1. ADIM: ARKA PLAN DERİNLİĞİ & GLOW EFEKTLERİ */}
+      {/* ARKA PLAN DERİNLİĞİ & GLOW EFEKTLERİ */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-tr from-indigo-500/20 via-purple-500/10 to-transparent blur-[120px] pointer-events-none -z-10 rounded-full" />
       <div className="absolute top-1/3 -right-40 w-[400px] h-[400px] bg-blue-600/10 blur-[100px] pointer-events-none -z-10 rounded-full" />
 
@@ -59,21 +57,32 @@ export default function Home() {
         </p>
       </section>
 
-      {/* PROJELER GRID (2 & 3. ADIM: HOVER EFEKTLERİ + BADGES) */}
+      {/* PROJELER GRID (Tıklanabilir Kartlar) */}
       <section id="projects" className="max-w-6xl mx-auto px-6 py-12">
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project) => (
-            <div
+            <a
               key={project.id}
-              className="group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-8 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 backdrop-blur-sm flex flex-col justify-between overflow-hidden"
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-8 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 backdrop-blur-sm flex flex-col justify-between overflow-hidden cursor-pointer"
             >
               {/* Kart İçi Hafif Renk Parlaması */}
               <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
 
               <div>
                 {/* Proje Başlığı */}
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-indigo-300 transition-colors">
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-indigo-300 transition-colors flex items-center justify-between">
                   {project.title}
+                  <svg
+                    className="w-5 h-5 text-slate-500 group-hover:text-indigo-400 transition-colors"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
                 </h3>
                 
                 {/* Açıklama */}
@@ -83,24 +92,9 @@ export default function Home() {
               </div>
 
               <div>
-                {/* Teknoloji Etiketleri (Badges) */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tags.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2.5 py-1 text-xs font-medium text-slate-300 bg-slate-800/80 rounded-md border border-slate-700/60"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Buton / Link */}
-                <a
-                  href={project.link}
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors"
-                >
-                  Detayları İncele
+                {/* İncele Yazısı */}
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors">
+                  Sisteme Git
                   <svg
                     className="w-4 h-4 transition-transform group-hover:translate-x-1"
                     fill="none"
@@ -109,9 +103,9 @@ export default function Home() {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
-                </a>
+                </span>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </section>
