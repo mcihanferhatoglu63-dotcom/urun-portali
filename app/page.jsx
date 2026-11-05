@@ -6,14 +6,14 @@ export default function Home() {
       id: 'site-yonetim',
       title: 'Apartman & Site Yönetim Sistemi',
       description: 'Kat ve daire görselleştirme mimarisi, dinamik aidat takibi, gelir-gider hesaplaması ve şeffaf yönetim paneli.',
-      link: 'https://site-yonetim adresiniz.vercel.app', // Projenizin linkini buraya yazabilirsiniz
+      link: 'https://mcf-site-yonetimi-2.vercel.app/', // Projenizin linkini buraya yazabilirsiniz
       gradient: 'from-blue-600/20 via-indigo-600/10 to-transparent',
     },
     {
       id: 'pos-adisyon',
       title: 'Kafe & Restoran POS Adisyon Sistemi',
       description: 'Çoklu garson senkronizasyonu, canlı masa düzeni haritası, QR müşteri menüsü ve SuperAdmin yetkilendirmesi.',
-      link: 'https://pos-adisyon adresiniz.vercel.app', // Projenizin linkini buraya yazabilirsiniz
+      link: 'https://pos-adisyon-system.vercel.app/', // Projenizin linkini buraya yazabilirsiniz
       gradient: 'from-purple-600/20 via-pink-600/10 to-transparent',
     },
   ];
