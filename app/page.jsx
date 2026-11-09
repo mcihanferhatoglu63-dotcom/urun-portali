@@ -48,7 +48,7 @@ export default function Home() {
             </div>
             <div>
               <span className="block font-bold text-sm sm:text-base tracking-wide text-slate-200">Ürünlerim</span>
-              <span className="block text-[10px] text-slate-400 font-mono">SaaS Portal</span>
+
             </div>
           </div>
 
@@ -113,9 +113,7 @@ export default function Home() {
                     <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-amber-500/80" />
                     <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-500/80" />
                   </div>
-                  <div className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-md bg-slate-800/60 text-[9px] sm:text-[10px] text-slate-400 font-mono tracking-wider truncate max-w-[140px] sm:max-w-none">
-                    secure-app.vercel.app
-                  </div>
+
                 </div>
 
                 <div className="flex items-center justify-center my-auto">
