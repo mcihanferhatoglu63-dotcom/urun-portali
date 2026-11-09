@@ -7,7 +7,7 @@ export default function Home() {
       title: 'Apartman & Site Yönetim Sistemi',
       tag: 'YÖNETİM PLAZASI',
       description: 'Kat görselleştirme, aidat ve gelir-gider takibi.',
-      link: 'https://site-yonetimi.vercel.app', // Kendi canlı linkiniz
+      link: 'https://mcf-site-yonetimi-2.vercel.app', // Kendi canlı linkiniz
       bgGradient: 'from-blue-600/20 via-indigo-600/10 to-transparent',
       borderColor: 'hover:border-blue-500/50',
       glowColor: 'group-hover:shadow-blue-500/20',
@@ -18,7 +18,7 @@ export default function Home() {
       title: 'Kafe & Restoran POS Adisyon',
       tag: 'POS & ADİSYON',
       description: 'Canlı masa düzeni, garson senkronizasyonu ve QR menü.',
-      link: 'https://pos-adisyon.vercel.app', // Kendi canlı linkiniz
+      link: 'https://pos-adisyon-system.vercel.app', // Kendi canlı linkiniz
       bgGradient: 'from-purple-600/20 via-pink-600/10 to-transparent',
       borderColor: 'hover:border-purple-500/50',
       glowColor: 'group-hover:shadow-purple-500/20',
