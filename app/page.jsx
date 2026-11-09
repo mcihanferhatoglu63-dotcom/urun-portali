@@ -47,7 +47,7 @@ export default function Home() {
               />
             </div>
             <div>
-              <span className="block font-bold text-sm sm:text-base tracking-wide text-slate-200">Ürünlerim</span>
+
               <span className="block font-bold text-sm sm:text-base tracking-wide text-slate-200">MCF TECHNOLOGY & SOFTWARE SOLUTIONS</span>
 
             </div>
