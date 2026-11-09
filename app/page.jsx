@@ -7,7 +7,7 @@ export default function Home() {
       title: 'Apartman & Site Yönetim Sistemi',
       tag: 'YÖNETİM PLAZASI',
       description: 'Kat görselleştirme, aidat ve gelir-gider takibi.',
-      link: 'https://mcf-site-yonetimi-2.vercel.app', // Kendi canlı linkiniz
+      link: 'https://mcf-site-yonetimi-2.vercel.app',
       bgGradient: 'from-blue-600/20 via-indigo-600/10 to-transparent',
       borderColor: 'hover:border-blue-500/50',
       glowColor: 'group-hover:shadow-blue-500/20',
@@ -18,7 +18,7 @@ export default function Home() {
       title: 'Kafe & Restoran POS Adisyon',
       tag: 'POS & ADİSYON',
       description: 'Canlı masa düzeni, garson senkronizasyonu ve QR menü.',
-      link: 'https://pos-adisyon-system.vercel.app', // Kendi canlı linkiniz
+      link: 'https://pos-adisyon-system.vercel.app',
       bgGradient: 'from-purple-600/20 via-pink-600/10 to-transparent',
       borderColor: 'hover:border-purple-500/50',
       glowColor: 'group-hover:shadow-purple-500/20',
@@ -44,12 +44,7 @@ export default function Home() {
                 src="/logo.png" 
                 alt="Logo" 
                 className="w-full h-full object-contain"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.nextSibling.style.display = 'block';
-                }}
               />
-              <span className="hidden text-indigo-400 font-extrabold text-lg">Ü</span>
             </div>
             <div>
               <span className="block font-bold text-sm tracking-wide text-slate-200">Ürünlerim</span>
@@ -77,7 +72,7 @@ export default function Home() {
         </p>
       </section>
 
-      {/* PROJE KARTLARI (BÜYÜK GÖRSEL MOCKUP'LAR) */}
+      {/* PROJE KARTLARI */}
       <section className="max-w-6xl mx-auto px-6 pb-24">
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project) => (
@@ -88,10 +83,8 @@ export default function Home() {
               rel="noopener noreferrer"
               className={`group relative rounded-3xl border border-slate-800/80 bg-slate-900/40 p-6 sm:p-8 transition-all duration-500 hover:-translate-y-2.5 ${project.borderColor} backdrop-blur-2xl shadow-2xl ${project.glowColor} flex flex-col justify-between overflow-hidden`}
             >
-              {/* Arka plan renk sızıntısı */}
               <div className={`absolute inset-0 bg-gradient-to-br ${project.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
 
-              {/* Kart Üst Bilgi */}
               <div className="relative z-10 mb-8">
                 <div className="flex items-center justify-between mb-4">
                   <span className="px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-indigo-300 bg-indigo-500/10 border border-indigo-500/20 rounded-full">
@@ -112,10 +105,7 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* UYGULAMA PENCERESİ (MOCKUP EFEKTİ) */}
               <div className="relative z-10 w-full h-48 rounded-2xl bg-[#0b0f19] border border-slate-800/80 p-4 flex flex-col justify-between overflow-hidden group-hover:border-slate-700 transition-colors shadow-inner">
-                
-                {/* Pencere Üst Barı */}
                 <div className="flex items-center justify-between pb-3 border-b border-slate-800/60">
                   <div className="flex gap-2">
                     <div className="w-3 h-3 rounded-full bg-rose-500/80" />
@@ -127,7 +117,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Buton Alanı */}
                 <div className="flex items-center justify-center my-auto">
                   <div className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold text-white bg-slate-800/90 border border-slate-700/80 group-hover:bg-indigo-600 group-hover:border-indigo-500 transition-all shadow-lg">
                     <span className={`w-2 h-2 rounded-full ${project.accentColor} animate-ping`} />
@@ -135,7 +124,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Alt Dekoratif Çizgi */}
                 <div className="w-full h-1 bg-gradient-to-r from-transparent via-slate-700 to-transparent opacity-40" />
               </div>
             </a>
