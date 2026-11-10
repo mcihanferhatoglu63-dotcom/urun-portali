@@ -41,13 +41,6 @@ export default function Home() {
                 src="/logo.png" 
                 alt="Logo" 
                 className="w-full h-full object-contain"
-                onError={(e) => {
-                  // Eger logo.png bulunamazsa logo (2).png dener
-                  if (!e.currentTarget.dataset.tried) {
-                    e.currentTarget.dataset.tried = "true";
-                    e.currentTarget.src = "/logo (2).png";
-                  }
-                }}
               />
             </div>
             <div>
@@ -93,7 +86,6 @@ export default function Home() {
               rel="noopener noreferrer"
               className={`group relative rounded-3xl border border-slate-800 bg-slate-900/50 p-6 sm:p-8 transition-all duration-500 hover:-translate-y-2 hover:border-slate-700 backdrop-blur-2xl shadow-2xl ${project.glow} flex flex-col justify-between overflow-hidden`}
             >
-              {/* Kart Bilgileri */}
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-3">
                   <span className="px-3 py-1 text-[10px] font-bold tracking-wider uppercase text-indigo-300 bg-indigo-500/10 border border-indigo-500/20 rounded-full">
@@ -115,10 +107,9 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* BİREBİR İNTERAKTİF PANELLER (DASHBOARD MOCKUP) */}
+              {/* İNTERAKTİF PANELLER */}
               <div className="relative w-full h-64 sm:h-72 rounded-2xl bg-[#0d111d] border border-slate-800 p-4 overflow-hidden group-hover:border-indigo-500/40 transition-all shadow-2xl">
                 
-                {/* Dashboard Header Bar */}
                 <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1.5">
@@ -133,11 +124,8 @@ export default function Home() {
                   <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-mono">ONLINE</span>
                 </div>
 
-                {/* DİNAMİK ARAYÜZ SIMÜLASYONU */}
                 {project.type === 'site' ? (
-                  /* Site Yönetim Ekranı Simülasyonu */
                   <div className="pt-4 grid grid-cols-3 gap-3 h-full">
-                    {/* Sol Mini Menü & Daireler */}
                     <div className="col-span-1 space-y-2">
                       <div className="text-[9px] font-mono text-slate-500 uppercase">Blok / Daire</div>
                       <div className="p-2 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-between text-[11px] text-indigo-300 font-medium">
@@ -152,7 +140,6 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Sağ Finans Paneli */}
                     <div className="col-span-2 space-y-3">
                       <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/50 flex justify-between items-center">
                         <div>
@@ -161,7 +148,6 @@ export default function Home() {
                         </div>
                         <span className="text-[10px] px-2 py-1 rounded bg-emerald-500/20 text-emerald-300">Ödendi</span>
                       </div>
-                      {/* Simüle Grafik Çizgileri */}
                       <div className="p-3 rounded-xl bg-slate-800/30 border border-slate-800/60 space-y-2">
                         <div className="flex justify-between text-[9px] text-slate-500">
                           <span>Gelir Dağılımı</span>
@@ -174,9 +160,7 @@ export default function Home() {
                     </div>
                   </div>
                 ) : (
-                  /* POS Adisyon Ekranı Simülasyonu */
                   <div className="pt-4 grid grid-cols-3 gap-3 h-full">
-                    {/* Canlı Masa Düzeni */}
                     <div className="col-span-2 space-y-2">
                       <div className="text-[9px] font-mono text-slate-500 uppercase">Masa Düzeni (Canlı)</div>
                       <div className="grid grid-cols-3 gap-2">
@@ -201,7 +185,6 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Sağ Adisyon Akışı */}
                     <div className="col-span-1 space-y-2">
                       <div className="text-[9px] font-mono text-slate-500 uppercase">Adisyon #104</div>
                       <div className="p-2 rounded-lg bg-slate-800/50 border border-slate-700/60 text-[9px] space-y-1">
@@ -222,7 +205,6 @@ export default function Home() {
                   </div>
                 )}
 
-                {/* Hover Anında Çıkan Parlak Buton */}
                 <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <span className={`px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r ${project.accent} shadow-xl transform group-hover:scale-105 transition-transform flex items-center gap-2`}>
                     Uygulamaya Bağlan
