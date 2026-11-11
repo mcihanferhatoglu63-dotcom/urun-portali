@@ -29,8 +29,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#041d15] via-[#092b2e] to-[#0a192f] text-slate-100 font-sans selection:bg-emerald-500 selection:text-white relative overflow-x-hidden">
       
-      {/* KUZEY IŞIKLARI (AURORA) DİNAMİK AMBİYANS KÜRELERİ */}
-      {/* Sol Yeşillik */}
+
       <div className="absolute top-0 left-0 w-[600px] h-[700px] bg-emerald-500/20 blur-[160px] pointer-events-none -z-10 rounded-full" />
       {/* Orta Turkuaz / Aurora Geçişi */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-teal-400/15 blur-[180px] pointer-events-none -z-10 rounded-full" />
@@ -52,9 +51,7 @@ export default function Home() {
             </div>
             <div>
               <span className="block font-extrabold text-sm sm:text-base text-white tracking-wide">Ürünlerim</span>
-              <span className="block text-[10px] bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 font-mono font-bold">
-                Aurora Portal
-              </span>
+
             </div>
           </div>
 
@@ -71,7 +68,7 @@ export default function Home() {
       <section className="max-w-5xl mx-auto text-center pt-14 sm:pt-20 pb-10 sm:pb-16 px-4 relative">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-teal-400/30 bg-teal-500/10 text-teal-300 text-xs font-bold mb-6 shadow-sm">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          Kuzey Işıkları Temalı Canlı Önizleme
+          Canlı Önizleme
         </div>
         <h1 className="text-3xl sm:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
           Yönetimi Kolaylaştıran <br className="hidden sm:block" />
@@ -79,9 +76,7 @@ export default function Home() {
             İnteraktif Arayüzler
           </span>
         </h1>
-        <p className="text-teal-100/80 text-sm sm:text-lg max-w-2xl mx-auto font-medium">
-          Yeşilden maviye uzanan Kuzey Işıkları atmosferiyle tasarlanmış dinamik yönetim panelleri.
-        </p>
+
       </section>
 
       {/* INTERACTIVE DASHBOARD CARDS GRID */}
