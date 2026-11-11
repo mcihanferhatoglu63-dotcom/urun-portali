@@ -50,7 +50,7 @@ export default function Home() {
               />
             </div>
             <div>
-              <span className="block font-extrabold text-sm sm:text-base text-white tracking-wide">Ürünlerim</span>
+              <span className="block font-extrabold text-sm sm:text-base text-white tracking-wide">MCF TECHNOLOGY & SOFTWARE SOLUTIONS</span>
 
             </div>
           </div>
