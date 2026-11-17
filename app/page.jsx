@@ -26,8 +26,8 @@ export default function Home() {
     },
     {
       id: 'turizm-hub',
-      title: 'Turizm & Acente B2B Hub',
-      badge: 'CANLI B2B MODÜLÜ',
+      title: 'MCF Turizm & Acente ',
+      badge: 'CANLI MODÜL',
       description: 'Otel, pansiyon, tur, otobüs ve uçak kontenjanları; aracı komisyon takibi ve tek tıkla WhatsApp PNR Voucher gönderimi.',
       link: 'https://mcf-turizm-agent.vercel.app/',
       accent: 'from-indigo-500 to-purple-600',
