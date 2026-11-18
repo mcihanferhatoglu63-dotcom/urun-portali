@@ -5,7 +5,6 @@ import {
   Building2,
   Users,
   ShieldCheck,
-  Briefcase,
   Send,
   Plus,
   CheckCircle2,
@@ -15,6 +14,7 @@ import {
   User,
   Ticket,
   Sparkles,
+  PackagePlus,
 } from "lucide-react";
 
 type UserRole = "SUPER_ADMIN" | "TENANT_ADMIN" | "SUB_AGENT";
@@ -121,13 +121,21 @@ export default function TurizmSaaSPanel() {
     },
   ]);
 
-  // Modal State'leri
+  // Rezervasyon Modal State'leri
   const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(null);
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [paxCount, setPaxCount] = useState(1);
   const [travelDate, setTravelDate] = useState("2026-11-25");
   const [lastCreatedBooking, setLastCreatedBooking] = useState<BookingItem | null>(null);
+
+  // Yeni Kontenjan Ekleme Modal State'leri
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [newCategory, setNewCategory] = useState("OTEL");
+  const [newTitle, setNewTitle] = useState("");
+  const [newQuota, setNewQuota] = useState(5);
+  const [newNetPrice, setNewNetPrice] = useState(1000);
+  const [newSellPrice, setNewSellPrice] = useState(1300);
 
   // Örnek İşletmeler (Süper Admin sekmesi için)
   const tenants = [
@@ -137,6 +145,30 @@ export default function TurizmSaaSPanel() {
   ];
 
   const totalCommission = bookings.reduce((acc, b) => acc + b.commissionEarned, 0);
+  const calculatedNewCommission = Math.max(0, newSellPrice - newNetPrice);
+
+  // Yeni Kontenjan Kaydetme Fonksiyonu
+  const handleAddInventory = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTitle.trim() || newQuota <= 0) return;
+
+    const newItem: InventoryItem = {
+      id: `${newCategory.slice(0, 3)}-${Math.floor(10 + Math.random() * 89)}`,
+      category: newCategory,
+      title: newTitle.trim(),
+      quota: newQuota,
+      netPrice: newNetPrice,
+      sellPrice: newSellPrice,
+      commission: calculatedNewCommission,
+    };
+
+    setInventory([newItem, ...inventory]);
+    setIsAddModalOpen(false);
+    setNewTitle("");
+    setNewQuota(5);
+    setNewNetPrice(1000);
+    setNewSellPrice(1300);
+  };
 
   const openBookingModal = (item: InventoryItem) => {
     setSelectedItem(item);
@@ -166,10 +198,8 @@ export default function TurizmSaaSPanel() {
       status: "Onaylandı",
     };
 
-    // 1. Rezervasyon listesine ekle
     setBookings([newBooking, ...bookings]);
 
-    // 2. İlgili ürünün kontenjanını düş
     setInventory((prev) =>
       prev.map((inv) =>
         inv.id === selectedItem.id
@@ -178,7 +208,6 @@ export default function TurizmSaaSPanel() {
       )
     );
 
-    // 3. Başarı ekranını göster
     setLastCreatedBooking(newBooking);
   };
 
@@ -309,11 +338,23 @@ export default function TurizmSaaSPanel() {
           {/* SEKME 1: MÜSAİTLİK & HIZLI SATIŞ HAVUZU */}
           {activeTab === "dashboard" && (
             <div>
-              <div className="mb-6">
-                <h2 className="text-xl font-bold text-white">Anlık Müsaitlik ve Hızlı Satış Havuzu</h2>
-                <p className="text-sm text-slate-400 mt-1">
-                  Otel, pansiyon, tur, otobüs ve uçak blok kontenjanlarından anında satış yapın.
-                </p>
+              <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <h2 className="text-xl font-bold text-white">Anlık Müsaitlik ve Hızlı Satış Havuzu</h2>
+                  <p className="text-sm text-slate-400 mt-1">
+                    Otel, pansiyon, tur, otobüs ve uçak blok kontenjanlarından anında satış yapın.
+                  </p>
+                </div>
+
+                {/* Sadece Süper Admin ve İşletme Sahibi yeni kontenjan ekleyebilir */}
+                {currentRole !== "SUB_AGENT" && (
+                  <button
+                    onClick={() => setIsAddModalOpen(true)}
+                    className="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 shadow-lg shadow-emerald-600/20 transition cursor-pointer shrink-0"
+                  >
+                    <PackagePlus className="w-4 h-4" /> + Yeni Kontenjan Ekle
+                  </button>
+                )}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -460,6 +501,108 @@ export default function TurizmSaaSPanel() {
         </main>
       </div>
 
+      {/* YENİ KONTENJAN / ÜRÜN EKLEME MODALI */}
+      {isAddModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-[#0e1422] border border-slate-700/80 rounded-2xl w-full max-w-md p-6 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+              <div className="flex items-center gap-2">
+                <PackagePlus className="w-5 h-5 text-emerald-400" />
+                <h3 className="font-bold text-white">Sisteme Yeni Kontenjan Ekle</h3>
+              </div>
+              <button
+                onClick={() => setIsAddModalOpen(false)}
+                className="text-slate-400 hover:text-white p-1 rounded-lg"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleAddInventory} className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs text-slate-400 mb-1.5">Hizmet Kategorisi</label>
+                  <select
+                    value={newCategory}
+                    onChange={(e) => setNewCategory(e.target.value)}
+                    className="bg-[#080c16] border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white w-full focus:outline-none"
+                  >
+                    <option value="OTEL">OTEL</option>
+                    <option value="PANSİYON">PANSİYON</option>
+                    <option value="TUR">TUR</option>
+                    <option value="OTOBÜS">OTOBÜS</option>
+                    <option value="UÇAK">UÇAK</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs text-slate-400 mb-1.5">Açık Kontenjan Adedi</label>
+                  <input
+                    type="number"
+                    min={1}
+                    required
+                    value={newQuota}
+                    onChange={(e) => setNewQuota(Number(e.target.value))}
+                    className="bg-[#080c16] border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white w-full focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs text-slate-400 mb-1.5">Tesis / Tur / Hat Adı</label>
+                <input
+                  type="text"
+                  required
+                  value={newTitle}
+                  onChange={(e) => setNewTitle(e.target.value)}
+                  placeholder="Örn: Erdemli Kızkalesi Deniz Manzaralı Oda"
+                  className="bg-[#080c16] border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white w-full focus:outline-none"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs text-slate-400 mb-1.5">Net B2B Maliyet (₺)</label>
+                  <input
+                    type="number"
+                    min={0}
+                    required
+                    value={newNetPrice}
+                    onChange={(e) => setNewNetPrice(Number(e.target.value))}
+                    className="bg-[#080c16] border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white w-full focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs text-slate-400 mb-1.5">Müşteri Satış Fiyatı (₺)</label>
+                  <input
+                    type="number"
+                    min={0}
+                    required
+                    value={newSellPrice}
+                    onChange={(e) => setNewSellPrice(Number(e.target.value))}
+                    className="bg-[#080c16] border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white w-full focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Otomatik Komisyon Hesaplama Önizlemesi */}
+              <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3 flex justify-between items-center">
+                <span className="text-xs text-slate-300">Aracı Net Kazancı (Otomatik):</span>
+                <span className="text-base font-bold text-emerald-400">+{calculatedNewCommission} ₺</span>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm py-3 rounded-xl transition cursor-pointer"
+              >
+                Havuzda Yayınla
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* REZERVASYON & PNR OLUŞTURMA MODALI */}
       {selectedItem && (
         <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
@@ -562,7 +705,6 @@ export default function TurizmSaaSPanel() {
                 </button>
               </form>
             ) : (
-              /* PNR OLUŞTURULDUKTAN SONRAKİ BAŞARI & WHATSAPP EKRANI */
               <div className="text-center space-y-4 py-2">
                 <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
                   <Sparkles className="w-6 h-6" />
